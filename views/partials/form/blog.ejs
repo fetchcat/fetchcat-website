@@ -1,0 +1,27 @@
+<label for="title" class="flex-col"
+  >Title:
+  <input
+    required
+    type="text"
+    id="title"
+    name="title"
+    value="<%= post.title %>"
+  />
+</label>
+<label for="description" class="flex-col"
+  >Description
+  <input
+    required
+    type="text"
+    id="description"
+    name="description"
+    value="<%= post.description %>"
+  />
+</label>
+<label for="entry" class="flex-col"
+  >Entry
+  <textarea required id="entry" name="entry" rows="10">
+<%= post.entry %></textarea
+  >
+</label>
+<button type="submit">Save</button>
