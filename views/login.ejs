@@ -2,11 +2,14 @@
 <html lang="en">
   <%- include('./partials/head'), { title } %>
   <body>
-    <%- include('./partials/nav') %>
+    <%- include('./partials/nav'), { current } %>
     <div class="container"><%= title %></div>
     <h2>Login</h2>
     <form id="login" action="/user/login" method="post">
-      <%- include('./partials/form/login') %>
+      <%- include('./partials/fieldsLogin'), { current, title } %>
     </form>
+    <% if(message !== null) { %>
+    <div><%= message %></div>
+    <% } %>
   </body>
 </html>

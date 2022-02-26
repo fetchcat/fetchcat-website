@@ -8,42 +8,35 @@ const port = process.env.PORT || 5001;
 const express = require("express");
 const methodOverride = require("method-override");
 const server = express();
-const { errorHandler } = require("./middleware/error");
-const { pageNotFound } = require("./middleware/404");
+const { errorHandler, pageNotFound } = require("./middleware/error");
 server.use(express.static("public"));
 
 const blogRouter = require("./routes/blog");
 
-// --- Mongoose --- //
-
-const mongoose = require("mongoose");
-
 // --- DB --- //
 
 const connectDB = require("./config/db");
-const { append } = require("express/lib/response");
+const user = require("./models/user");
 connectDB();
 
 // --- EJS --- //
 
 server.set("view engine", "ejs");
-server.use(express.urlencoded({ extended: false }));
+server.use(express.urlencoded({ extended: true }));
 server.use(methodOverride("_method"));
 
 // --- Routes --- //
-
-// Pages: Home (latest 5 posts) Blog About Contact
-// Endpoints: /blog /blog/edit blog/create blog/delete
 
 // Home
 
 server.get("/", async (req, res) => {
   res.render("index", { title: "Home", current: "home" });
+  const me = await user.findById({ _id: "621571c2245e80b0a0cf4e9c" });
 });
 
 // Blog
 
-server.use("/blog", blogRouter);
+server.use("/blog/", blogRouter);
 
 // Porfolio
 
@@ -69,8 +62,19 @@ server.get("/contact", (req, res) => {
 // Login
 
 server.get("/login", (req, res) => {
-  res.render("login", { title: "Login", current: "login" });
+  const email = req.body.email ? req.body.email : "";
+  const password = req.body.password ? req.body.password : "";
+  res.redirect("/user");
+  res.render("login", {
+    title: "Login",
+    current: "login",
+    email,
+    password,
+    message: "",
+  });
 });
+
+// User
 
 server.use("/user", require("./routes/user"));
 

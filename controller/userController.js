@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
+const Blog = require("../models/blog");
 
 const asyncHandler = require("express-async-handler");
 
@@ -44,22 +45,45 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, title, post } = req.body;
+
   //check user email
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
+    console.log(req.body);
+    res.render("user/blog/create", {
       _id: user.id,
       name: user.name,
       email: user.email,
       token: generateToken(user._id),
+      title: "Create Blog",
+      current: "blog",
+      blog: new Blog(),
     });
+    // res.status(200).render("blog", {
+    //   _id: user.id,
+    //   name: user.name,
+    //   email: user.email,
+    //   token: generateToken(user._id),
+    //   title: "Create Blog",
+    //   current: "blog",
+    //   post,
+    // });
+    // res.json({
+    //   _id: user.id,
+    //   name: user.name,
+    //   email: user.email,
+    //   token: generateToken(user._id),
+    // });
   } else {
-    res.status(400);
-    throw new Error("Invalid credentials");
+    res.render("login", {
+      email,
+      password,
+      title,
+      current: "login",
+      message: "Invalid credentials",
+    });
   }
-
-  res.json({ message: "Login User" });
 });
 
 // GET - Get Logged in User

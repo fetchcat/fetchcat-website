@@ -8,6 +8,11 @@ const errorHandler = (err, req, res, next) => {
   });
 };
 
+const pageNotFound = (req, res) => {
+  res.status(404).render("404", { title: "Page Not Found", current: "404" });
+};
+
 module.exports = {
   errorHandler,
+  pageNotFound,
 };
