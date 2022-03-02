@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head'), { title } %>
+  <body>
+    <%- include('./partials/nav'), { current } %>
+    <div class="container"><%= title %></div>
+    <h2>Register</h2>
+    <form id="login" action="/user/" method="post">
+      <label for="email">
+        Name
+        <input
+          type="text"
+          required
+          id="name"
+          name="name"
+          value="<%= user.name %>"
+        />
+      </label>
+      <label for="email">
+        Email
+        <input
+          type="text"
+          required
+          id="email"
+          name="email"
+          value="<%= user.email %>"
+        />
+      </label>
+      <label for="password">
+        Password
+        <input
+          type="password"
+          required
+          id="password"
+          name="password"
+          value="<%= user.password %>"
+        />
+      </label>
+      <button type="submit">Login</button>
+    </form>
+    <% if(message !== null) { %>
+    <div><%= message %></div>
+    <% } %>
+  </body>
+</html>

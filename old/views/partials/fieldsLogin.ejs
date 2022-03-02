@@ -1,6 +1,12 @@
 <label for="email">
   Email
-  <input type="text" required id="email" name="email" value="<%= email %>" />
+  <input
+    type="text"
+    required
+    id="email"
+    name="email"
+    value="<%= user.email %>"
+  />
 </label>
 <label for="password">
   Password
@@ -9,7 +15,7 @@
     required
     id="password"
     name="password"
-    value="<%= password %>"
+    value="<%= user.password %>"
   />
 </label>
 <button type="submit">Login</button>

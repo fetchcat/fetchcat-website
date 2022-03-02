@@ -1,6 +1,9 @@
 // --- Config --- //
 
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const port = process.env.PORT || 5001;
 
 // --- Express --- //
@@ -12,11 +15,13 @@ const { errorHandler, pageNotFound } = require("./middleware/error");
 server.use(express.static("public"));
 
 const blogRouter = require("./routes/blog");
+const authRouter = require("./routes/auth");
 
 // --- DB --- //
 
 const connectDB = require("./config/db");
-const user = require("./models/user");
+const User = require("./models/user");
+
 connectDB();
 
 // --- EJS --- //
@@ -31,7 +36,7 @@ server.use(methodOverride("_method"));
 
 server.get("/", async (req, res) => {
   res.render("index", { title: "Home", current: "home" });
-  const me = await user.findById({ _id: "621571c2245e80b0a0cf4e9c" });
+  const me = await User.findById({ _id: "621571c2245e80b0a0cf4e9c" });
 });
 
 // Blog
@@ -59,18 +64,26 @@ server.get("/contact", (req, res) => {
   res.render("contact", { title: "Contact", current: "contact" });
 });
 
+// Register
+
+server.get("/register", (req, res) => {
+  const user = new User();
+  res.render("register", {
+    title: "Register",
+    current: "login",
+    message: "",
+    user: user,
+  });
+});
+
 // Login
 
 server.get("/login", (req, res) => {
-  const email = req.body.email ? req.body.email : "";
-  const password = req.body.password ? req.body.password : "";
-  res.redirect("/user");
   res.render("login", {
     title: "Login",
     current: "login",
-    email,
-    password,
     message: "",
+    user: new User(),
   });
 });
 

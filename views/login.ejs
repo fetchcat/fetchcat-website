@@ -3,13 +3,16 @@
   <%- include('./partials/head'), { title } %>
   <body>
     <%- include('./partials/nav'), { current } %>
-    <div class="container"><%= title %></div>
-    <h2>Login</h2>
-    <form id="login" action="/user/login" method="post">
-      <%- include('./partials/fieldsLogin'), { current, title } %>
+    <h2><%= title %></h2>
+    <form action="/auth/login" method="post" class="flex-col form">
+      <input type="text" name="email" id="email" placeholder="Email" />
+      <input
+        type="password"
+        name="password"
+        id="email"
+        placeholder="Password"
+      />
+      <button type="submit" class="button">Login</button>
     </form>
-    <% if(message !== null) { %>
-    <div><%= message %></div>
-    <% } %>
   </body>
 </html>

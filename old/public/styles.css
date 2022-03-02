@@ -52,20 +52,3 @@ body {
 .current {
   background-color: #aaaaaa;
 }
-
-.form {
-  width: 300px;
-  margin: 0px auto;
-}
-
-.form input {
-  padding: 5px;
-  margin-bottom: 5px;
-}
-
-.button {
-  padding: 5px;
-  border: none;
-  cursor: pointer;
-  background-color: skyblue;
-}

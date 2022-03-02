@@ -10,7 +10,6 @@ const Blog = require("../models/blog");
 // Middleware
 
 const { savePostAndRedirect } = require("../middleware/blog");
-const { protect } = require("../middleware/auth");
 
 // Controllers
 
