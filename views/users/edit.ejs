@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head'), { title } %>
+  <body>
+    <%- include('../partials/nav'), { current } %>
+    <h2><%= title %></h2>
+    <div>Welcome, <%= name %></div>
+    <div>Member since: <%= createdAt.toLocaleDateString() %></div>
+    <div>Email <%= email %></div>
+    <%- include("../partials/messages") %>
+    <h2>Edit Blog Post</h2>
+    <form
+      action="/blog/<%= blog.id %>?_method=PUT"
+      method="post"
+      class="flex-col form"
+    >
+      <input
+        type="text"
+        name="title"
+        id="title"
+        placeholder="title"
+        value="<%= blog.title %>"
+      />
+      <input
+        type="text"
+        name="description"
+        id="description"
+        placeholder="description"
+        value="<%= blog.description %>"
+      />
+      <textarea name="entry" id="entry" placeholder="Entry">
+<%= blog.entry %>"</textarea
+      >
+      <button type="submit">Edit</button>
+    </form>
+  </body>
+</html>

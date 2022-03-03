@@ -1,25 +1,45 @@
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
+const LocalStrategy = require("passport-local").Strategy;
+
+const bcrypt = require("bcryptjs");
+
+// User Mode
 
 const User = require("../models/user");
 
-const handleAuth = (req, res, next) => {
-  const { email, password } = req.body;
-
+module.exports = function (passport) {
   passport.use(
-    new LocalStrategy(async function (email, password, done) {
-      const user = await User.findOne({ email });
-      try {
-        if (user && (await bcrypt.compare(password, user.password))) {
-          return done(null, user);
-        } else {
-          return done(null, false);
+    new LocalStrategy(
+      { usernameField: "email" },
+      async (email, password, done) => {
+        // match user
+        const user = await User.findOne({ email: email });
+        try {
+          if (!user) {
+            return done(null, false, {
+              message: "That email is not registered",
+            });
+          }
+          bcrypt.compare(password, user.password, (error, isMatch) => {
+            if (error) throw error;
+            if (isMatch) {
+              return done(null, user);
+            } else {
+              return done(null, false, { message: "incorrect password" });
+            }
+          });
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        return done(error);
       }
-    })
+    )
   );
-};
 
-module.exports = handleAuth;
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+  passport.deserializeUser((id, done) => {
+    User.findById(id, function (err, user) {
+      done(err, user);
+    });
+  });
+};

@@ -49,6 +49,10 @@ body {
   flex-direction: row;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
 .current {
   background-color: #aaaaaa;
 }

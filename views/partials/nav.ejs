@@ -1,33 +1,41 @@
-<nav>
-  <a href="/" class="<%- (current === 'home') ? 'current' : 'available'; %>"
-    >Home</a
-  >
-  <a href="/blog" class="<%- (current === 'blog') ? 'current' : 'available'; %>"
-    >Blog</a
-  >
-  <a
-    href="/portfolio"
-    class="<%- (current === 'portfolio') ? 'current' : 'available'; %>"
-    >Portfolio</a
-  >
-  <a
-    href="/about"
-    class="<%- (current === 'about') ? 'current' : 'available'; %>"
-    >About</a
-  >
-  <a
-    href="/contact"
-    class="<%- (current === 'contact') ? 'current' : 'available'; %>"
-    >Contact</a
-  >
-  <a
-    href="/users/register"
-    class="<%- (current === 'register') ? 'current' : 'available'; %>"
-    >Register</a
-  >
-  <a
-    href="/users/login"
-    class="<%- (current === 'login') ? 'current' : 'available'; %>"
-    >Login</a
-  >
+<nav class="flex-row space-between">
+  <div>
+    <a href="/" class="<%- (current === 'home') ? 'current' : 'available'; %>"
+      >Home</a
+    >
+    <a
+      href="/blog"
+      class="<%- (current === 'blog') ? 'current' : 'available'; %>"
+      >Blog</a
+    >
+    <a
+      href="/portfolio"
+      class="<%- (current === 'portfolio') ? 'current' : 'available'; %>"
+      >Portfolio</a
+    >
+    <a
+      href="/about"
+      class="<%- (current === 'about') ? 'current' : 'available'; %>"
+      >About</a
+    >
+    <a
+      href="/contact"
+      class="<%- (current === 'contact') ? 'current' : 'available'; %>"
+      >Contact</a
+    >
+    <a
+      href="/users/register"
+      class="<%- (current === 'register') ? 'current' : 'available'; %>"
+      >Register</a
+    >
+  </div>
+  <% if(isLoggedIn) { %>
+  <div class="login-logout">
+    <a href="/users/logout">Logout</a>
+  </div>
+  <% } else { %>
+  <div class="login-logout">
+    <a href="/users/login">Login</a>
+  </div>
+  <% } %>
 </nav>
