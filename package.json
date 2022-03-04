@@ -1,7 +1,7 @@
 {
   "name": "fetchcat",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.0.3",
+  "description": "My Website",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dompurify": "^2.3.6",
