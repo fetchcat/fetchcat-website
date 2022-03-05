@@ -1,40 +1,14 @@
-const express = require("express");
-const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
-// User model
+// Models
 
-const User = require("../models/user");
 const Blog = require("../models/blog");
+const User = require("../models/user");
 
-// Middleware
+// POST - Register new user - PUBLIC
 
-const { ensureAuthenticated } = require("../middleware/auth");
-
-// GET - Login Page
-
-router.get("/login", (req, res) => {
-  res.render("users/login", {
-    title: "Login",
-    current: "login",
-    isLoggedIn: req.isAuthenticated(),
-  });
-});
-
-// GET - Register Page
-
-router.get("/register", (req, res) => {
-  res.render("users/register", {
-    title: "Register",
-    current: "register",
-    isLoggedIn: req.isAuthenticated(),
-  });
-});
-
-// POST - Register new user
-
-router.post("register", async (req, res) => {
+const registerUser = async (req, res) => {
   const { name, email, password, password2 } = req.body;
   let errors = [];
   // Required fields
@@ -93,7 +67,10 @@ router.post("register", async (req, res) => {
             newUser.password = hash;
             try {
               newUser.save();
-              req.flash("success_msg", "You are now registered and can log in");
+              req.flash(
+                "success_msg",
+                "Registration successful. You may now log in"
+              );
               res.redirect("/users/login");
             } catch {
               req.flash("error_msg", "Error creating user");
@@ -107,11 +84,11 @@ router.post("register", async (req, res) => {
       res.redirect("/users/register");
     }
   }
-});
+};
 
-// GET - User dashboard
+// GET - User Dashboard - AUTH REQUIRED
 
-router.get("/dashboard", ensureAuthenticated, async (req, res) => {
+const getDashboard = async (req, res) => {
   const { id, name, email, createdAt, updatedAt } = req.user;
   const blogs = await Blog.find({ user: id }).sort({ updatedAt: -1 });
   try {
@@ -126,27 +103,55 @@ router.get("/dashboard", ensureAuthenticated, async (req, res) => {
       isLoggedIn: req.isAuthenticated(),
       blogs,
     });
-  } catch (error) {
-    console.log(error);
+  } catch {
+    req.flash("error_msg", "Cannot get dashboard");
+    res.redirect("/users/login");
   }
-});
+};
 
-// POST - Login
+// POST - Login User - AUTH REQUIRED
 
-router.post("/login", (req, res, next) => {
+const loginUser = (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/users/dashboard",
     failureRedirect: "/users/login",
     failureFlash: true,
   })(req, res, next);
-});
+};
 
-// GET - Logout
+// GET - Login Page - PUBLIC
 
-router.get("/logout", (req, res) => {
+const getLoginPage = (req, res) => {
+  res.render("users/login", {
+    title: "Login",
+    current: "login",
+    isLoggedIn: req.isAuthenticated(),
+  });
+};
+
+// GET - Registration page - PUBLIC
+
+const getRegisterPage = (req, res) => {
+  res.render("users/register", {
+    title: "Register",
+    current: "register",
+    isLoggedIn: req.isAuthenticated(),
+  });
+};
+
+// GET - Log out user and close session - AUTH REQUIRED
+
+const userLogout = (req, res) => {
   req.logout();
   req.flash("success_msg", "You are logged out");
   res.redirect("/users/login");
-});
+};
 
-module.exports = router;
+module.exports = {
+  registerUser,
+  getDashboard,
+  loginUser,
+  getLoginPage,
+  getRegisterPage,
+  userLogout,
+};

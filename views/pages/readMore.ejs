@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head'), { title } %>
+  <body>
+    <%- include('../partials/nav'), { current } %>
+    <h2><%= title %></h2>
+    <p>Contact Info...</p>
+    <h3><%= blog.title %></h3>
+    <div><%= blog.createdAt.toLocaleDateString() %></div>
+    <div><%= blog.updatedAt.toLocaleDateString() %></div>
+    <div><%= blog.description %></div>
+    <div><%- blog.sanitizedEntry %></div>
+    <a href="/blog">Back</a>
+  </body>
+</html>

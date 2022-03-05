@@ -47,11 +47,9 @@ blogSchema.pre("validate", function (next) {
   if (this.title) {
     this.slug = slugify(this.title, { lower: true, strict: true });
   }
-
   if (this.entry) {
     this.sanitizedEntry = dompurify.sanitize(marked.parse(this.entry));
   }
-
   next();
 });
 

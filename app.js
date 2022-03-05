@@ -1,6 +1,6 @@
 // --- ENV --- //
 
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 const port = process.env.PORT || 5001;
 
 // --- MongoDB --- //
@@ -17,11 +17,11 @@ const methodOverride = require("method-override");
 const flash = require("connect-flash");
 const session = require("express-session");
 
-// --- Routes --- //
+// --- Routers --- //
 
-const pageRouter = require("./routes/pages");
+const pageRouter = require("./routes/page");
 const blogRouter = require("./routes/blog");
-const userRouter = require("./routes/users");
+const userRouter = require("./routes/user");
 
 // --- EJS --- //
 

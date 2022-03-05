@@ -10,7 +10,7 @@
     <%- include("../partials/messages") %>
     <h2>Edit Blog Post</h2>
     <form
-      action="/blog/<%= blog.id %>?_method=PUT"
+      action="/blog/<%= blog.slug %>?_method=PUT"
       method="post"
       class="flex-col form"
     >

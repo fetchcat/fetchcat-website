@@ -11,6 +11,7 @@
         Last Updated On: <%= blog.updatedAt.toLocaleDateString() %>
       </div>
       <div class="description"><%= blog.description %></div>
+      <a href="/more/<%= blog.slug %>">Read More</a>
     </div>
     <% }) %> <% } else { %>
     <div class="message">No entries found</div>

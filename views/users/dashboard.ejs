@@ -31,7 +31,7 @@
       <form action="/blog/<%= blog.id %>?_method=DELETE" method="post">
         <button type="submit">Delete</button>
       </form>
-      <a href="/blog/<%= blog.id %>">Edit</a>
+      <a href="/blog/<%= blog.slug %>">Edit</a>
     </div>
     <% }) %> <% } else { %>
     <div class="message">No entries found</div>
