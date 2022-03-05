@@ -23,9 +23,18 @@ const pageRouter = require("./routes/page");
 const blogRouter = require("./routes/blog");
 const userRouter = require("./routes/user");
 
+const { pageNotFound } = require("./middleware/pageNotFound");
+
 // --- EJS --- //
 
+app.set("views", "./views");
 app.set("view engine", "ejs");
+
+// --- Static Assets --- //
+
+app.use(express.static("public"));
+app.use("/css", express.static(__dirname + "public/css"));
+app.use("/img", express.static(__dirname + "public/img"));
 
 // --- Request Handling --- //
 
@@ -70,7 +79,6 @@ app.use("/users", userRouter);
 
 // --- 404 (Last Route) --- //
 
-const { pageNotFound } = require("./middleware/pageNotFound");
 app.use(pageNotFound);
 
 // --- App Listen --- //
