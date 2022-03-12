@@ -1,30 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-// --- Theme --- //
-
-import { ThemeProvider } from "styled-components";
-import theme from "./styles/Theme";
-
-// --- Global Styles --- /
-
-import GlobalStyles from "./styles/Global";
+import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
 
 // --- Components --- //
 
-import { Header } from "./components/Header";
-import { Container } from "./components/Container";
+import Header from "./components/Header/Header";
+import Container from "./components/Container/Container";
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <>
-        <GlobalStyles />
-        <Header title="FetchCat" />
-        <Container>
-          <div>derp</div>
-        </Container>
-      </>
-    </ThemeProvider>
+    <>
+      <Header title="FetchCat" />
+      <Container>
+        <div>derp</div>
+      </Container>
+    </>
   );
 };
 

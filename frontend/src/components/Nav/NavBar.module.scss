@@ -1,8 +1,6 @@
-import styled from "styled-components";
+@use "../../globals.scss";
 
-// --- Styling --- //
-
-export const StyledNav = styled.nav`
+.navbar {
   ul {
     list-style-type: none;
     display: flex;
@@ -13,10 +11,7 @@ export const StyledNav = styled.nav`
       a {
         text-decoration: none;
         padding: 10px;
-        color: ${({ theme }) => theme.colors.light};
-        &:hover {
-          color: ${({ theme }) => theme.colors.primary};
-        }
+        color: white;
       }
     }
     button {
@@ -25,8 +20,7 @@ export const StyledNav = styled.nav`
       border-radius: 10px;
       color: white;
       font-size: 1em;
-      background-color: ${({ theme }) => theme.colors.primary};
       cursor: pointer;
     }
   }
-`;
+}
