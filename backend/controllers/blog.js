@@ -1,106 +1,31 @@
-// Models
+// GET: All Blogs | ROUTE: /api/blogs | AUTH:
 
-const Blog = require("../models/blog");
-const User = require("../models/user");
-
-// DELETE - Blog by ID - AUTH REQUIRED
-
-const deleteBlogById = async (req, res) => {
-  const post = await Blog.findById(req.params.id);
-  try {
-    const postAuthor = post.user._id.toString();
-    const sessionUser = req.session.passport.user;
-    if (postAuthor === sessionUser) {
-      post.delete();
-    } else {
-      req.flash("error_msg", "You are not authorized to delete that resource");
-      res.redirect("/users/dashboard");
-    }
-    req.flash("success_msg", "Post deleted successfully");
-    res.redirect("/users/dashboard");
-  } catch {
-    req.flash("error_msg", "Request failed");
-    res.redirect("/users/dashboard");
-  }
+const getBlogs = (req, res) => {
+  res.status(200).json({ message: "Get Blogs" });
 };
 
-// POST - New Blog entry - AUTH REQUIRED
+// POST: Set Blog | ROUTE: /api/blogs | AUTH:
 
-const postNewBlog = async (req, res) => {
-  const { title, description, entry } = req.body;
-  const loggedInUser = req.session.passport.user;
-  const { name, id } = await User.findById(loggedInUser);
-  const blog = new Blog({
-    title,
-    description,
-    entry,
-    author: name,
-    user: id,
-  });
-  try {
-    await blog.save();
-    res.redirect("/users/dashboard");
-  } catch {
-    req.flash("error_msg", "Could not save post");
-    res.redirect("/users/dashboard");
-  }
+const setBlog = (req, res) => {
+  console.log(req.body);
+  res.status(200).json({ message: "Set Blog" });
 };
 
-// PUT - Update Blog - AUTH REQUIRED
+// PUT: Update Blog by ID | ROUTE: /api/blogs/:id | AUTH:
 
-const updateBlog = async (req, res) => {
-  const loggedInUser = req.session.passport.user;
-  let blog = await Blog.findOneAndUpdate(
-    { slug: req.params.slug },
-    {
-      title: req.body.title,
-      description: req.body.description,
-      entry: req.body.entry,
-    }
-  );
-  const blogAuthor = await blog.user.toString();
-
-  try {
-    // Make sure you can only delete your own posts
-    if (loggedInUser === blogAuthor) {
-      blog = await blog.save();
-      req.flash("success_msg", "Post updated successfully");
-      res.redirect("/users/dashboard");
-    } else {
-      req.flash("error_msg", "You are not authorized to edit this resource");
-    }
-  } catch {
-    req.flash("error_msg", "Updating post failed");
-    res.redirect("/users/dashboard");
-  }
+const updateBlog = (req, res) => {
+  res.status(200).json({ message: `Updated Blog ${req.params.id}` });
 };
 
-// GET - Blog by ID, and populate form for editing - AUTH REQUIRED
+// DELETE: Delete Blog by ID | ROUTE: /api/blogs/:id | AUTH:
 
-const editBlog = async (req, res) => {
-  const { id, name, email, createdAt, updatedAt } = req.user;
-  const blog = await Blog.findOne({ slug: req.params.slug });
-  try {
-    res.render("users/editPost", {
-      title: "Edit Blog Post",
-      current: "register",
-      id,
-      name,
-      email,
-      createdAt,
-      updatedAt,
-      blog,
-      isLoggedIn: req.isAuthenticated(),
-    });
-  } catch {
-    req.flash("error_msg", "Cannot edit post");
-    res.redirect("/dashboard");
-  }
+const deleteBlog = (req, res) => {
+  res.status(200).json({ message: `Deleted Blog ${req.params.id}` });
 };
 
 module.exports = {
-  deleteBlogById,
-  postNewBlog,
+  getBlogs,
+  setBlog,
   updateBlog,
-  editBlog,
+  deleteBlog,
 };

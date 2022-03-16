@@ -1,10 +1,26 @@
-import React from "react";
-import { Nav } from "./Nav";
-import { StyledHeader } from "../styles/Header";
+import styled from "styled-components";
+import { Nav } from "./Nav/Nav";
 
-// --- Header --- //
+// --- Header Styles --- //
 
-export const Header = ({ title }) => {
+const StyledHeader = styled.header`
+  background-color: ${({ theme }) => theme.colors.dark};
+  height: 50px;
+  h1 {
+    color: white;
+    font-size: 1.5em;
+  }
+  padding-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+// --- Header Component --- //
+
+const Header = ({ title }) => {
   return (
     <StyledHeader>
       <h1>{title}</h1>
@@ -12,3 +28,5 @@ export const Header = ({ title }) => {
     </StyledHeader>
   );
 };
+
+export default Header;
