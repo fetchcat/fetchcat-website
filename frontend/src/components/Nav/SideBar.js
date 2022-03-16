@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -76,34 +75,3 @@ export const SideBar = ({ Navigation }) => {
     </>
   );
 };
-=======
-import React, { useState } from "react";
-import SideBarSCSS from "./SideBar.module.scss";
-import { FaBars } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
-
-import NavLinks from "./NavLinks";
-
-export default function SideBar() {
-  const [toggleMenu, setToggleMenu] = useState(false);
-
-  const toggle = () => setToggleMenu(!toggleMenu);
-  return (
-    <nav>
-      <div onClick={toggle} className={SideBarSCSS.openClose}>
-        {toggleMenu ? <AiOutlineClose /> : <FaBars />}
-      </div>
-
-      {toggleMenu && (
-        <ul className={SideBarSCSS.sidebar}>
-          {NavLinks.map((link) => (
-            <li className="items">
-              <a href={link.link}>{link.title}</a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </nav>
-  );
-}
->>>>>>> f4059aed5fc5d4de853fd4586dd63cceb18f1b63
