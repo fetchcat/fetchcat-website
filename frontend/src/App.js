@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // --- Components --- //
@@ -64,6 +65,25 @@ const App = () => {
         </Router>
       </Container>
     </Theme>
+=======
+import React, { useState, useEffect } from "react";
+
+import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
+
+// --- Components --- //
+
+import Header from "./components/Header/Header";
+import Container from "./components/Container/Container";
+
+const App = () => {
+  return (
+    <>
+      <Header title="FetchCat" />
+      <Container>
+        <div>derp</div>
+      </Container>
+    </>
+>>>>>>> f4059aed5fc5d4de853fd4586dd63cceb18f1b63
   );
 };
 

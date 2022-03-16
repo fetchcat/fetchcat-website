@@ -1,0 +1,39 @@
+/* --- Font --- */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,700&display=swap");
+
+/* --- Variables --- */
+
+$primary: "#8560d4";
+$secondary: "#262429";
+$dark: "#262429";
+$medium: "#5d4a82";
+$light: "#FFFFFF";
+$darkGrey: "#eeeeee";
+$mediumGrey: "#cccccc";
+$lightGrey: "#888888";
+$success: "green";
+$warning: "yellow";
+$error: "red";
+$hoverHighlight: "#b89cf1";
+$primaryHighlight: " #a585e5";
+$secondaryHighlight: "#4b4750";
+
+/* --- CSS Reset --- */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  height: 100vh;
+  min-width: 500;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+}
