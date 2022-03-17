@@ -6,7 +6,7 @@ const {
   setBlog,
   updateBlog,
   deleteBlog,
-} = require("../controllers/blog");
+} = require("../controllers/blogController");
 
 router.route("/").get(getBlogs).post(setBlog);
 router.route("/:id").put(updateBlog).delete(deleteBlog);
