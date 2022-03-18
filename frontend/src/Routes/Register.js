@@ -12,13 +12,14 @@ export default function Register() {
 
     if (password === password2) {
       try {
-        await fetch("http://localhost:5000/users/register", {
+        const res = await fetch("http://localhost:5000/users/register", {
           method: "POST",
           headers: {
             "content-type": "application/json",
           },
           body: JSON.stringify(newUser),
         });
+
       } catch (error) {
         console.log(error);
       }

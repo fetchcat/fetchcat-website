@@ -1,4 +1,8 @@
+import React, { UseContext, useEffect } from "react";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { AuthContext, AuthProvider } from "./context/AuthProvider";
 
 // --- Components --- //
 
@@ -45,25 +49,37 @@ const Container = styled.div`
 `;
 
 const App = () => {
+  const [authState, setAuthState] = useContext(AuthContext);
+
+  const isAuthenticated = async () => {
+    return await fetch("http://localhost:5000/isAuth", { method: "get" });
+  };
+
+  const loadAuthData = async () => {
+    isAuthenticated();
+  };
+
   return (
-    <Theme>
-      <Container>
-        <GlobalStyles />
-        <Router>
-          <Header title="FetchCat" />
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Error404 />} />
-          </Routes>
-        </Router>
-      </Container>
-    </Theme>
+    <AuthProvider>
+      <Theme>
+        <Container>
+          <GlobalStyles />
+          <Router>
+            <Header title="FetchCat" />
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<Error404 />} />
+            </Routes>
+          </Router>
+        </Container>
+      </Theme>
+    </AuthProvider>
   );
 };
 
