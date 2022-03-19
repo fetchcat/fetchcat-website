@@ -5,3 +5,33 @@
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
+
+## Structure
+
+### client
+
+- public
+- src
+  - components
+    - Header
+    - Nav
+    - Footer
+  - hooks
+  - routes
+    - Home
+      - HomeUI.js
+      - HomeLogic.js
+      - Home.scss
+- App.js
+- index.js
+- globals.scss
+
+### server
+
+- config
+  - db.js
+- routes
+- models
+- controllers
+  server.js
+  .env
