@@ -8,6 +8,9 @@ connectDB();
 
 // --- Express --- //
 
+const userRoutes = require("./routes/userRoutes");
+const blogRoutes = require("./routes/blogRoutes");
+
 const express = require("express");
 const app = express();
 
@@ -29,12 +32,9 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// --- Routes --- //
+// Router
 
-const userRoutes = require("./routes/userRoutes");
 app.use("/user", userRoutes);
-
-const blogRoutes = require("./routes/blogRoutes");
 app.use("/blog", blogRoutes);
 
 // --- Listen --- //

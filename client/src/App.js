@@ -1,4 +1,4 @@
-import React, { UseContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -6,23 +6,26 @@ import { AuthContext, AuthProvider } from "./context/AuthContext";
 
 // --- Components --- //
 
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 
-import Landing from "./Routes/Landing";
-import Blog from "./Routes/Blog";
-import Portfolio from "./Routes/Portfolio";
-import About from "./Routes/About";
-import Contact from "./Routes/Contact";
-import Register from "./Routes/Register";
-import Login from "./Routes/Login";
-import Error404 from "./Routes/Error404";
+import Landing from "./routes/Landing";
+import Blog from "./routes/Blog";
+import Portfolio from "./routes/Portfolio";
+import About from "./routes/About";
+import Contact from "./routes/Contact";
+import Register from "./routes/Register";
+import Login from "./routes/Login";
+import Error404 from "./routes/Error404";
+
+import AuthRoute from "./routes/AuthRoute";
+import Dashboard from "./routes/Dashboard";
 
 // --- Theme --- //
 
 import Theme from "./components/Theme";
 import styled, { createGlobalStyle } from "styled-components";
 
-// --- Global Styles --- /
+// --- Global Styles --- //
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -48,16 +51,18 @@ const Container = styled.div`
   width: 100%;
 `;
 
+// --- Component --- //
+
 const App = () => {
-  const [authState, setAuthState] = useContext(AuthContext);
+  //const [authState, setAuthState] = useContext(AuthContext);
 
-  const isAuthenticated = async () => {
-    return await fetch("http://localhost:5000/isAuth", { method: "get" });
-  };
+  // const isAuthenticated = async () => {
+  //   return await fetch("http://localhost:5000/isAuth", { method: "get" });
+  // };
 
-  const loadAuthData = async () => {
-    isAuthenticated();
-  };
+  // const loadAuthData = async () => {
+  //   isAuthenticated();
+  // };
 
   return (
     <AuthProvider>
@@ -75,6 +80,7 @@ const App = () => {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<Error404 />} />
+              <AuthRoute path="/dashboard" element={<Dashboard />} />
             </Routes>
           </Router>
         </Container>
