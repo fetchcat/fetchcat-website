@@ -2,6 +2,15 @@ const { handleErrors } = require("../middleware/handleErrors");
 
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+// JWT
+
+const maxAge = 1 * 24 * 60 * 60;
+
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: maxAge });
+};
 
 // POST: Register User /user/register
 
@@ -15,8 +24,9 @@ const postRegisterUser = async (req, res) => {
       firstName: firstName,
       lastName: lastName,
     });
-
-    res.status(201).json(user);
+    const token = createToken(user._id);
+    // res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+    res.status(201).json({ user: user._id, token: token });
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });

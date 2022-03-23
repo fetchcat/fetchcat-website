@@ -12,6 +12,7 @@ const userRoutes = require("./routes/userRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const app = express();
 
 // --- MiddleWare --- //
@@ -27,10 +28,11 @@ app.use(
   })
 );
 
-// Express JSON Parsing
+// Express Parsing
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Router
 

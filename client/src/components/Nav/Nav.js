@@ -4,12 +4,15 @@ import { NavLink } from "react-router-dom";
 import { NavBar } from "./NavBar";
 import { SideBar } from "./SideBar";
 
-// --- Component --- //
+import styles from "./Nav.module.scss";
+
+// --- Nav Component --- //
 
 export const Nav = () => {
   const initialWidth = window.innerWidth || 0;
   const [width, setWidth] = useState(initialWidth);
 
+  // Set Width
   useEffect(() => {
     function fetchWidth() {
       setWidth(window.innerWidth);
@@ -63,9 +66,9 @@ export const Nav = () => {
       </>
     );
   };
-
+  // If width < 700 use sidebar
   return (
-    <nav>
+    <nav className={styles.nav}>
       {width > 700 ? (
         <NavBar Navigation={Navigation} />
       ) : (

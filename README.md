@@ -35,3 +35,12 @@
 - controllers
   server.js
   .env
+
+## To Do
+
+[] Express JWT Protected Routes
+[] React Login/Register Hooks
+[x] User Context
+[] Content
+[] Blog
+[] React JWT Protected Routes

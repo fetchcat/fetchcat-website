@@ -1,0 +1,16 @@
+@use "../../globals";
+
+.header {
+  background-color: globals.$secondary;
+  height: 50px;
+  h1 {
+    color: white;
+    font-size: 1.5em;
+  }
+  padding-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
