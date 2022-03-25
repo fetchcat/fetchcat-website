@@ -4,40 +4,52 @@ import Cookies from "js-cookie";
 import styles from "./Register.module.scss";
 import Button from "../../components/Button/Button";
 
+import useForm from "../../hooks/useForm";
+
 export default function Register() {
-  const [email, setEmail] = useState(" ");
-  const [password, setPassword] = useState(" ");
-  const [password2, setPassword2] = useState(" ");
-  const [firstName, setFirstName] = useState(" ");
-  const [lastName, setLastName] = useState(" ");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
-  async function handleRegister(e) {
-    e.preventDefault();
+  const { handleChange, values, handleSubmit } = useForm();
 
-    const newUser = { email, password, firstName, lastName };
+  // const [errors, setErrors] = useState({});
+  // const [isValid, setIsValid] = useState(false);
 
-    if (password === password2) {
-      try {
-        const res = await fetch("http://localhost:5000/user/register", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        });
-        const userData = await res.json();
-        Cookies.set("jwt", userData.token, { expires: 1 });
-        console.log(userData.user);
-        console.log(userData.token);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
+  // function handleRegister(e) {
+  //   e.preventDefault();
+
+  //   if (firstName.length < 6) {
+  //     setErrors({ firstName: "too short" });
+  //   }
+  //   if (lastName.length < 6) {
+  //     setErrors({ lastName: "too short" });
+  //   }
+
+  //   const newUser = { email, password, firstName, lastName };
+
+  //   // if (newUser) {
+  //   //   await validate();
+
+  //   //   // const res = await fetch("http://localhost:5000/user/register", {
+  //   //   //   method: "POST",
+  //   //   //   headers: {
+  //   //   //     "content-type": "application/json",
+  //   //   //   },
+  //   //   //   body: JSON.stringify(newUser),
+  //   //   // });
+  //   //   // const userData = await res.json();
+  //   //   // Cookies.set("jwt", userData.token, { expires: 1 });
+  //   //   // console.log(userData.user);
+  //   //   // console.log(userData.token);
+  //   // }
+  // }
 
   return (
     <div>
-      <form onSubmit={handleRegister} className={styles.registerform}>
+      <form onSubmit={handleSubmit} className={styles.registerform}>
         <h2>Register</h2>
         <label htmlFor="firstName">
           First Name
@@ -46,7 +58,8 @@ export default function Register() {
             id="firstName"
             name="firstName"
             className={styles.text}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={values.firstName}
+            onChange={handleChange}
           ></input>
         </label>
         <label htmlFor="lastName">
@@ -56,7 +69,8 @@ export default function Register() {
             id="lastName"
             name="lastName"
             className={styles.text}
-            onChange={(e) => setLastName(e.target.value)}
+            value={values.lastName}
+            onChange={handleChange}
           ></input>
         </label>
         <label htmlFor="email">
@@ -66,7 +80,8 @@ export default function Register() {
             id="email"
             name="email"
             className={styles.text}
-            onChange={(e) => setEmail(e.target.value)}
+            value={values.email}
+            onChange={handleChange}
           ></input>
         </label>
         <label htmlFor="password">
@@ -76,7 +91,8 @@ export default function Register() {
             id="password"
             name="password"
             className={styles.text}
-            onChange={(e) => setPassword(e.target.value)}
+            value={values.password}
+            onChange={handleChange}
           ></input>
         </label>
         <label htmlFor="password2">
@@ -85,10 +101,12 @@ export default function Register() {
             type="password"
             id="password2"
             name="password2"
-            onChange={(e) => setPassword2(e.target.value)}
+            value={values.password2}
+            onChange={handleChange}
             className={styles.text}
           ></input>
         </label>
+
         <Button type="submit" bgColor="primary">
           Submit
         </Button>
