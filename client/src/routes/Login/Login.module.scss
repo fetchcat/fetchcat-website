@@ -1,6 +1,6 @@
 @use "../../globals.scss";
 
-.registerform {
+.loginform {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,22 +24,6 @@
     }
     margin-bottom: 10px;
   }
-
-  h2 {
-    margin-bottom: 20px;
-  }
-}
-
-.registersuccess {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  margin: 25px auto 0px auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
 
   h2 {
     margin-bottom: 20px;

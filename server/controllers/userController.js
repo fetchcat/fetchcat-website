@@ -37,7 +37,9 @@ const postRegisterUser = async (req, res) => {
 
 const postLoginUser = async (req, res, next) => {
   const { email, password } = req.body;
+  console.log(req.body);
   const user = await User.findOne({ email });
+  console.log(user);
   if (user == null) {
     return res.status(400).json({ message: "No user found" });
   }
@@ -46,8 +48,6 @@ const postLoginUser = async (req, res, next) => {
     const result = await bcrypt.compare(password, user.password);
 
     if (result) {
-      req.session.user = result;
-      console.log(req.session);
       res.status(200).json({ message: "Logged In" });
     } else {
       res.status(400).json({ message: "incorrect password" });
