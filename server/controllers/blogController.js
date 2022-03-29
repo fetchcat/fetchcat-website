@@ -4,6 +4,15 @@ const Blog = require("../models/blogModel");
 
 // GET - Latest 5 Blog Posts
 
+const getLatestBlogs = async (req, res) => {
+  try {
+    const blogs = Blog.find().limit(5);
+    res.status(201).json(blogs);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // GET - One Post
 
 // POST - Add new blog entry
@@ -32,4 +41,4 @@ const postNewBlog = async (req, res) => {
 
 // DELETE - Delete blog by ID
 
-module.exports = { postNewBlog };
+module.exports = { postNewBlog, getLatestBlogs };

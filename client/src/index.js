@@ -18,10 +18,6 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     font-family: "Poppins", sans-serif;
   }
-
-  .active {
-    right: 0px !important;
-  }
 `;
 
 const theme = {

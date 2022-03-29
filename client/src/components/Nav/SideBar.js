@@ -16,7 +16,7 @@ const StyledSideBar = styled.div`
   transition: right 0.5s;
   border-left: solid 5px ${(props) => props.theme.hoverHighlight};
 
-  .active {
+  &.active {
     color: ${(props) => props.theme.primary};
     right: 0px !important;
   }
