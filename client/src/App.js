@@ -6,7 +6,10 @@ import { UserProvider } from "./context/UserContext";
 
 // --- Components --- //
 
-import Header from "./components/Header/Header";
+import Header from "./components/Header";
+import Container from "./components/Container";
+
+// --- Route Components --- //
 
 import Landing from "./routes/Landing";
 import Blog from "./routes/Blog";
@@ -20,11 +23,11 @@ import Error404 from "./routes/Error404";
 //import AuthRoute from "./routes/AuthRoute";
 //import Dashboard from "./routes/Dashboard";
 
-// --- Component --- //
+// --- App Component --- //
 
 const App = () => {
   return (
-    <div className="container">
+    <Container>
       <Router>
         <UserProvider>
           <Header title="FetchCat" />
@@ -41,7 +44,7 @@ const App = () => {
           </Routes>
         </UserProvider>
       </Router>
-    </div>
+    </Container>
   );
 };
 

@@ -4,8 +4,6 @@ import { NavLink } from "react-router-dom";
 import { NavBar } from "./NavBar";
 import { SideBar } from "./SideBar";
 
-import styles from "./Nav.module.scss";
-
 // --- Nav Component --- //
 
 export const Nav = () => {
@@ -68,7 +66,7 @@ export const Nav = () => {
   };
   // If width < 700 use sidebar
   return (
-    <nav className={styles.nav}>
+    <nav>
       {width > 700 ? (
         <NavBar Navigation={Navigation} />
       ) : (

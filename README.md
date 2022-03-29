@@ -43,4 +43,4 @@
 [x] User Context
 [] Content
 [] Blog
-[] React JWT Protected Routes
+[] React JWT or Context? Protected Routes

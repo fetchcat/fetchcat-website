@@ -1,0 +1,12 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "Blog Post 1",
+      "author": "Me",
+      "description": "Lorem ipsum dolor...",
+      "createdAt": "Mar 28, 2022",
+      "updatedAt": "Mar 28, 2022"
+    }
+  ]
+}
