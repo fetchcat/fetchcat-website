@@ -25,9 +25,9 @@ const validateRegister = (values) => {
   // Check password and length more than 6 chars
 
   if (!values.password) {
-    errors.password = "password required";
+    errors.password = "Password required";
   } else if (values.password.length < 6) {
-    errors.password = "password too short";
+    errors.password = "Password too short";
   }
 
   // Check if confirm password and passwords match
