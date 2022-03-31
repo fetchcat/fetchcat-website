@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
+import styled from "styled-components";
+
 import { NavBar } from "./NavBar";
 import { SideBar } from "./SideBar";
+
+const StyledNav = styled.nav`
+  display: flex;
+  flex-direction: row;
+`;
 
 // --- Nav Component --- //
 
@@ -66,12 +73,12 @@ export const Nav = () => {
   };
   // If width < 700 use sidebar
   return (
-    <nav>
+    <StyledNav>
       {width > 700 ? (
         <NavBar Navigation={Navigation} />
       ) : (
         <SideBar Navigation={Navigation} />
       )}
-    </nav>
+    </StyledNav>
   );
 };

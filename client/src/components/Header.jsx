@@ -16,7 +16,10 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 50px;
+  min-height: 50px;
+  position: fixed;
+  left: 0;
+  top: 0;
 `;
 
 // --- Header Component --- //

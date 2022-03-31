@@ -1,5 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
+
 import App from "./App";
 
 import { createGlobalStyle, ThemeProvider } from "styled-components";
@@ -11,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  #root {
+  #app {
     display: flex;
     flex-direction: column;
     min-width: 500px;
@@ -39,12 +40,16 @@ const theme = {
   ctaHighlight: "#7bd4c2",
 };
 
-ReactDOM.render(
+// New Root for React v18
+
+const container = document.getElementById("app");
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <App />
     </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );

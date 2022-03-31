@@ -2,14 +2,16 @@ const { handleErrors } = require("../middleware/handleErrors");
 
 const Blog = require("../models/blogModel");
 
-// GET - Latest 5 Blog Posts
+// GET - and Sort Latest 5 Blog Posts
 
 const getLatestBlogs = async (req, res) => {
   try {
-    const blogs = Blog.find().limit(5);
-    res.status(201).json(blogs);
+    const blogs = await Blog.find().sort({ updatedAt: -1 }).limit(5);
+    res.status(201).send(blogs);
   } catch (error) {
-    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Error establishing database connection", error });
   }
 };
 
