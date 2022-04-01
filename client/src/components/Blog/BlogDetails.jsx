@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
@@ -60,3 +61,11 @@ const StyledLink = styled(Link)`
     background-color: ${(props) => props.theme.ctaHighlight};
   }
 `;
+=======
+
+const BlogDetails = () => {
+  return <div>BlogDetails</div>;
+};
+
+export default BlogDetails;
+>>>>>>> 9840766758854dd694af3c2876335c2814d6d25f
