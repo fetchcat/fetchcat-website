@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import Cookies from "js-cookie";
 
+import Container from "../../components/Container";
+
 import RegisterForm from "./RegisterForm";
 import RegisterSuccess from "./RegisterSuccess";
 
@@ -44,12 +46,12 @@ export default function Register() {
   // }
 
   return (
-    <div>
+    <Container>
       {!isSubmitted ? (
         <RegisterForm submitForm={submitForm} />
       ) : (
         <RegisterSuccess />
       )}
-    </div>
+    </Container>
   );
 }

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { NavBar } from "./NavBar";
-import { SideBar } from "./SideBar";
+import styled from "styled-components";
 
-// --- Nav Component --- //
+import NavBar from "./NavBar";
+import SideBar from "./SideBar";
 
-export const Nav = () => {
+// --- Component --- //
+
+const Nav = () => {
   const initialWidth = window.innerWidth || 0;
   const [width, setWidth] = useState(initialWidth);
 
@@ -66,12 +68,21 @@ export const Nav = () => {
   };
   // If width < 700 use sidebar
   return (
-    <nav>
+    <StyledNav>
       {width > 700 ? (
         <NavBar Navigation={Navigation} />
       ) : (
         <SideBar Navigation={Navigation} />
       )}
-    </nav>
+    </StyledNav>
   );
 };
+
+export default Nav;
+
+// --- Styles --- //
+
+const StyledNav = styled.nav`
+  display: flex;
+  flex-direction: row;
+`;
