@@ -1,0 +1,9 @@
+POST http://localhost:5000/send/sendgrid
+content-type: application/json
+
+{
+  "name": "derp",
+  "email": "derp@derp.com",
+  "phone": "867-5309",
+  "message": "Herp derp de derp"
+}

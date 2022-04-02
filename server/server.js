@@ -10,6 +10,7 @@ connectDB();
 
 const userRoutes = require("./routes/userRoutes");
 const blogRoutes = require("./routes/blogRoutes");
+const emailRoutes = require("./routes/emailRoutes");
 
 const express = require("express");
 const cookieParser = require("cookie-parser");
@@ -38,6 +39,7 @@ app.use(cookieParser());
 
 app.use("/user", userRoutes);
 app.use("/blog", blogRoutes);
+app.use("/send", emailRoutes);
 
 // --- Listen --- //
 

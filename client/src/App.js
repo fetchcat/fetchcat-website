@@ -11,14 +11,14 @@ import Container from "./components/Container";
 
 // --- Route Components --- //
 
-import Landing from "./routes/Landing";
-import Blog from "./routes/Blog";
-import Portfolio from "./routes/Portfolio";
-import About from "./routes/About";
-import Contact from "./routes/Contact";
-import Register from "./routes/Register/Register";
-import Login from "./routes/Login/Login";
-import Error404 from "./routes/Error404";
+import Landing from "./pages/Landing";
+import Blog from "./pages/Blog";
+import Portfolio from "./pages/Portfolio";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Register from "./pages/Register/Register";
+import Login from "./pages/Login/Login";
+import Error404 from "./pages/Error404";
 
 //import AuthRoute from "./routes/AuthRoute";
 //import Dashboard from "./routes/Dashboard";
