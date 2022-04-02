@@ -1,6 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+// --- Component --- //
+
+const Form = ({ children, onSubmit }) => {
+  return <StyledForm onSubmit={onSubmit}>{children}</StyledForm>;
+};
+
+export default Form;
+
+// --- Styles --- //
+
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -39,9 +49,3 @@ const StyledForm = styled.form`
     margin-top: 20px;
   }
 `;
-
-const Form = ({ children, onSubmit }) => {
-  return <StyledForm onSubmit={onSubmit}>{children}</StyledForm>;
-};
-
-export default Form;

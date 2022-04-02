@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+// --- Component --- //
+
+const NavBar = ({ Navigation }) => {
+  return (
+    <StyledNavBar>
+      <Navigation />
+    </StyledNavBar>
+  );
+};
+
+export default NavBar;
+
+// --- Styles --- //
+
 const StyledNavBar = styled.ul`
   list-style-type: none;
   display: flex;
@@ -27,13 +41,3 @@ const StyledNavBar = styled.ul`
     }
   }
 `;
-
-// --- NavBar Component --- //
-
-export const NavBar = ({ Navigation }) => {
-  return (
-    <StyledNavBar>
-      <Navigation />
-    </StyledNavBar>
-  );
-};

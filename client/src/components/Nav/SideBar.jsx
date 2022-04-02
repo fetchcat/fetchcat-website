@@ -5,6 +5,29 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import styled from "styled-components";
 
+// --- Component --- //
+
+const SideBar = ({ Navigation }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  function toggleMenu() {
+    setMenuOpen(!menuOpen);
+  }
+  return (
+    <StyledSideBar className={menuOpen ? "active" : ""}>
+      <StyledToggleSwitch onClick={toggleMenu}>
+        {menuOpen ? <AiOutlineClose /> : <FaBars />}
+      </StyledToggleSwitch>
+      <StyledSideBarLinks onClick={toggleMenu}>
+        <Navigation />
+      </StyledSideBarLinks>
+    </StyledSideBar>
+  );
+};
+
+export default SideBar;
+
+// --- Styles --- //
+
 const StyledSideBar = styled.div`
   position: fixed;
   bottom: 0;
@@ -54,22 +77,3 @@ const StyledToggleSwitch = styled.div`
   cursor: pointer;
   z-index: 99;
 `;
-
-// --- SideBar Component --- //
-
-export const SideBar = ({ Navigation }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  function toggleMenu() {
-    setMenuOpen(!menuOpen);
-  }
-  return (
-    <StyledSideBar className={menuOpen ? "active" : ""}>
-      <StyledToggleSwitch onClick={toggleMenu}>
-        {menuOpen ? <AiOutlineClose /> : <FaBars />}
-      </StyledToggleSwitch>
-      <StyledSideBarLinks onClick={toggleMenu}>
-        <Navigation />
-      </StyledSideBarLinks>
-    </StyledSideBar>
-  );
-};

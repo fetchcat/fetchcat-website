@@ -2,18 +2,32 @@ const { handleErrors } = require("../middleware/handleErrors");
 
 const Blog = require("../models/blogModel");
 
-// GET - Latest 5 Blog Posts
+// GET - and Sort Latest 5 Blog Posts
 
 const getLatestBlogs = async (req, res) => {
   try {
-    const blogs = Blog.find().limit(5);
-    res.status(201).json(blogs);
+    const blogs = await Blog.find().sort({ updatedAt: -1 }).limit(5);
+    res.status(201).send(blogs);
   } catch (error) {
-    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Error establishing database connection", error });
   }
 };
 
-// GET - One Post
+// GET - One Blog Details
+
+const getBlogDetails = async (req, res) => {
+  try {
+    const slug = req.params.slug;
+    const blog = await Blog.findOne({ slug });
+    res.status(200).json(blog);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error establishing database connection", error });
+  }
+};
 
 // POST - Add new blog entry
 
@@ -41,4 +55,4 @@ const postNewBlog = async (req, res) => {
 
 // DELETE - Delete blog by ID
 
-module.exports = { postNewBlog, getLatestBlogs };
+module.exports = { postNewBlog, getLatestBlogs, getBlogDetails };

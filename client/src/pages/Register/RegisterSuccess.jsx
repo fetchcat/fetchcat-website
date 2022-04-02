@@ -6,6 +6,23 @@ import Button from "../../components/Button";
 
 import { NavLink } from "react-router-dom";
 
+// --- Component --- //
+
+const RegisterSuccess = () => {
+  return (
+    <StyledRegisterSuccess>
+      <h2>Registration Successful!</h2>
+      <NavLink to="/login">
+        <Button bgColor="cta">Login</Button>
+      </NavLink>
+    </StyledRegisterSuccess>
+  );
+};
+
+export default RegisterSuccess;
+
+// --- Styles --- //
+
 const StyledRegisterSuccess = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,16 +38,3 @@ const StyledRegisterSuccess = styled.div`
     margin-bottom: 20px;
   }
 `;
-
-const RegisterSuccess = () => {
-  return (
-    <StyledRegisterSuccess>
-      <h2>Registration Successful!</h2>
-      <NavLink to="/login">
-        <Button bgColor="cta">Login</Button>
-      </NavLink>
-    </StyledRegisterSuccess>
-  );
-};
-
-export default RegisterSuccess;

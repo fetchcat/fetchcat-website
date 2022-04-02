@@ -7,24 +7,13 @@ import Form from "../../components/Form";
 import useRegister from "../../hooks/useRegister";
 import validateRegister from "../../helpers/validateRegister";
 
-const StyledRegister = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  margin: 25px auto 0px auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-`;
+// --- Component --- //
 
 const RegisterForm = ({ submitForm }) => {
   const { handleChange, values, handleSubmit, errors } = useRegister(
     submitForm,
     validateRegister
   );
-
   return (
     <StyledRegister>
       <Form onSubmit={handleSubmit}>
@@ -95,3 +84,17 @@ const RegisterForm = ({ submitForm }) => {
 };
 
 export default RegisterForm;
+
+// --- Styles --- //
+
+const StyledRegister = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  margin: 25px auto 0px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+`;
