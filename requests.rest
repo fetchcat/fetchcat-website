@@ -7,3 +7,13 @@ content-type: application/json
   "phone": "867-5309",
   "message": "Herp derp de derp"
 }
+
+###
+
+POST http://localhost:5000/user/login
+content-type: application/json
+
+{
+  "email": "bowser@gmail.com",
+  "password": "123456"
+}

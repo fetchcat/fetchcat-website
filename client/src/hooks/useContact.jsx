@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useLogin = (callback, validation) => {
+const useContact = (callback, validateContact) => {
   const [values, setValues] = useState({
+    name: "",
     email: "",
-    password: "",
+    phone: "",
+    message: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -20,19 +22,20 @@ const useLogin = (callback, validation) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(validation(values));
+    setErrors(validateContact(values));
     setIsSubmitting(true);
-    console.log(loginUser());
   };
 
-  const loginUser = async () => {
+  const sendContact = async () => {
     try {
       const res = await axios({
         method: "post",
-        url: "http://localhost:5000/user/login",
+        url: "http://localhost:5000/send/sendgrid",
         data: {
+          name: values.name,
           email: values.email,
-          password: values.password,
+          phone: values.phone,
+          message: values.message,
         },
       });
       console.log(res);
@@ -44,10 +47,11 @@ const useLogin = (callback, validation) => {
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       callback();
+      sendContact();
     }
   }, [errors, isSubmitting, callback]);
 
   return { handleChange, values, handleSubmit, errors };
 };
 
-export default useLogin;
+export default useContact;

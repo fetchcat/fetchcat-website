@@ -1,8 +1,8 @@
 import React from "react";
 
-import styled from "styled-components";
 import Button from "../../components/Button";
-import Form from "../../components/Form";
+import Form from "../../components/Form/Form";
+import FormCard from "../../components/Form/FormCard";
 
 import useRegister from "../../hooks/useRegister";
 import validateRegister from "../../helpers/validateRegister";
@@ -15,7 +15,7 @@ const RegisterForm = ({ submitForm }) => {
     validateRegister
   );
   return (
-    <StyledRegister>
+    <FormCard>
       <Form onSubmit={handleSubmit}>
         <h2>Register</h2>
         <label htmlFor="firstName">
@@ -79,22 +79,8 @@ const RegisterForm = ({ submitForm }) => {
           </Button>
         </div>
       </Form>
-    </StyledRegister>
+    </FormCard>
   );
 };
 
 export default RegisterForm;
-
-// --- Styles --- //
-
-const StyledRegister = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  margin: 25px auto 0px auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-`;

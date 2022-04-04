@@ -3,16 +3,12 @@ import { FaGithubSquare, FaLinkedin, FaFilePdf } from "react-icons/fa";
 
 import styled from "styled-components";
 
-import { UserContext } from "../context/UserContext";
-
 import Container from "../components/Container";
 import MiniCard from "../components/Card/MiniCard";
 
 // --- Component --- //
 
 const Home = () => {
-  const [user, setUser] = useContext(UserContext);
-
   return (
     <Container>
       <StyledLanding>

@@ -44,11 +44,22 @@ const postLoginUser = async (req, res, next) => {
     return res.status(400).json({ message: "No user found" });
   }
 
+  const token = createToken(user._id);
+
   try {
     const result = await bcrypt.compare(password, user.password);
 
     if (result) {
-      res.status(200).json({ message: "Logged In" });
+      res.status(200).json({
+        message: "Logged In",
+
+        user: {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: email,
+          token: token,
+        },
+      });
     } else {
       res.status(400).json({ message: "incorrect password" });
     }

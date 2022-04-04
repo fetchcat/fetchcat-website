@@ -1,23 +1,11 @@
 import React from "react";
 
-import styled from "styled-components";
 import Button from "../../components/Button";
-import Form from "../../components/Form";
+import Form from "../../components/Form/Form";
+import FormCard from "../../components/Form/FormCard";
 
 import useLogin from "../../hooks/useLogin";
 import validateLogin from "../../helpers/validateLogin";
-
-const StyledLoginForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  margin: 25px auto 0px auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-`;
 
 const LoginForm = ({ submitForm }) => {
   const { handleChange, values, handleSubmit, errors } = useLogin(
@@ -25,7 +13,7 @@ const LoginForm = ({ submitForm }) => {
     validateLogin
   );
   return (
-    <StyledLoginForm>
+    <FormCard>
       <Form onSubmit={handleSubmit}>
         <h2>Login</h2>
 
@@ -56,7 +44,7 @@ const LoginForm = ({ submitForm }) => {
           <Button type="submit">Login</Button>
         </div>
       </Form>
-    </StyledLoginForm>
+    </FormCard>
   );
 };
 

@@ -2,22 +2,9 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
-<<<<<<< HEAD
 
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
-=======
-
-import { NavBar } from "./NavBar";
-import { SideBar } from "./SideBar";
-
-const StyledNav = styled.nav`
-  display: flex;
-  flex-direction: row;
-`;
-
-// --- Nav Component --- //
->>>>>>> 9840766758854dd694af3c2876335c2814d6d25f
 
 // --- Component --- //
 
