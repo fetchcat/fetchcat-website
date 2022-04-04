@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 const mail = require("@sendgrid/mail");
 
 mail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -62,4 +62,4 @@ const sendGrid = async (req, res) => {
   res.status(200).json({ status: "Ok" });
 };
 
-module.exports = { sendContactForm, sendGrid };
+module.exports = { sendGrid };
