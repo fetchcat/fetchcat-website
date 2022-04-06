@@ -1,19 +1,14 @@
-import React from "react";
-
 import Button from "../../components/Button";
 import Form from "../../components/Form/Form";
 import FormCard from "../../components/Form/FormCard";
 
 import useRegister from "../../hooks/useRegister";
-import validateRegister from "../../helpers/validateRegister";
 
 // --- Component --- //
 
 const RegisterForm = ({ submitForm }) => {
-  const { handleChange, values, handleSubmit, errors } = useRegister(
-    submitForm,
-    validateRegister
-  );
+  const { handleChange, values, handleSubmit, errors } =
+    useRegister(submitForm);
   return (
     <FormCard>
       <Form onSubmit={handleSubmit}>

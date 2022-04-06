@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { UserContext } from "./context/UserContext";
+import { UserProvider } from "./context/UserContext";
 
 // --- Components --- //
 
@@ -17,6 +17,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact/Contact";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
+import Dashboard from "./pages/Dashboard";
 import Error404 from "./pages/Error404";
 
 import BlogDetail from "./pages/Blog/BlogDetail";
@@ -27,10 +28,9 @@ import BlogDetail from "./pages/Blog/BlogDetail";
 // --- App Component --- //
 
 const App = () => {
-  const [user, setUser] = useState({});
   return (
     <Router>
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserProvider>
         <Header title="FetchCat" />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -41,10 +41,10 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Error404 />} />
-          {/* <AuthRoute path="/dashboard" element={<Dashboard />} /> */}
         </Routes>
-      </UserContext.Provider>
+      </UserProvider>
     </Router>
   );
 };

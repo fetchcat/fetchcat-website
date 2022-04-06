@@ -21,6 +21,7 @@ const StyledButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   color: white;
+  text-transform: uppercase;
   background-color: ${(props) =>
     props.primary ? props.theme.primary : props.theme.cta};
   :hover {

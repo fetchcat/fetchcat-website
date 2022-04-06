@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { NavLink, Link } from "react-router-dom";
 
 import styled from "styled-components";
+import { UserContext } from "../../context/UserContext";
 
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
@@ -11,6 +12,8 @@ import SideBar from "./SideBar";
 const Nav = () => {
   const initialWidth = window.innerWidth || 0;
   const [width, setWidth] = useState(initialWidth);
+
+  const [user, setUser] = useContext(UserContext);
 
   // Set Width
   useEffect(() => {
@@ -24,6 +27,10 @@ const Nav = () => {
     // Cleanup Function
     return () => window.removeEventListener("resize", fetchWidth);
   });
+
+  const logout = () => {
+    setUser({ isAuth: false });
+  };
 
   const Navigation = () => {
     const links = [
@@ -51,10 +58,6 @@ const Nav = () => {
         title: "Register",
         path: "/register",
       },
-      {
-        title: "Login",
-        path: "/login",
-      },
     ];
     return (
       <>
@@ -63,6 +66,22 @@ const Nav = () => {
             <NavLink to={link.path}>{link.title}</NavLink>
           </li>
         ))}
+        {user.isAuth ? (
+          <li>
+            <StyledNavLink to="/Dashboard">Dashboard</StyledNavLink>
+          </li>
+        ) : null}
+        {user.isAuth ? (
+          <li>
+            <Link to="/" onClick={logout}>
+              Logout
+            </Link>
+          </li>
+        ) : (
+          <li>
+            <StyledNavLink to="/login">Login</StyledNavLink>
+          </li>
+        )}
       </>
     );
   };
@@ -85,4 +104,10 @@ export default Nav;
 const StyledNav = styled.nav`
   display: flex;
   flex-direction: row;
+`;
+
+const StyledNavLink = styled(NavLink)`
+  :hover {
+    color: ${(props) => props.theme.ctaHighlight} !important;
+  }
 `;

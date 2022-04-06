@@ -12,7 +12,7 @@ const ContactSuccess = () => {
       <h2>Message Sent!</h2>
       <p>Thank you for your inquiry.</p>
       <div className="submit-container">
-        <NavLink to="/contact">Back</NavLink>
+        <NavLink to="/">Back</NavLink>
       </div>
     </FormCard>
   );

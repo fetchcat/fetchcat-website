@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { withRouter } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+
+import Container from "../components/Container";
 
 function Dashboard() {
-  return <div>Dashboard Yay</div>;
+  const user = useContext(UserContext);
+  console.log(user);
+  return (
+    <Container>
+      <h1>Dashboard</h1>
+      <p>Hello, {user[0].firstName}</p>
+      <p>email: {user[0].email} </p>
+    </Container>
+  );
 }
 
-export default withRouter(Dashboard);
+export default Dashboard;

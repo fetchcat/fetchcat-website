@@ -1,7 +1,11 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect, useContext } from "react";
+import axios from "../hooks/useAxios";
 
-const useLogin = (callback, validation) => {
+import { useNavigate } from "react-router-dom";
+
+import { UserContext } from "../context/UserContext";
+
+const useLogin = (submitForm) => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -9,6 +13,33 @@ const useLogin = (callback, validation) => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [user, setUser] = useContext(UserContext);
+
+  let navigate = useNavigate();
+
+  const validateLogin = (values) => {
+    let regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+    let errors = {};
+
+    // Check for email and valid
+
+    if (!values.email) {
+      errors.email = "Email required";
+    } else if (!regex.test(values.email)) {
+      errors.email = "Email invalid";
+    }
+
+    // Check password and length more than 6 chars
+
+    if (!values.password) {
+      errors.password = "Password required";
+    } else if (values.password.length < 6) {
+      errors.password = "Password too short";
+    }
+
+    return errors;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,22 +51,21 @@ const useLogin = (callback, validation) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(validation(values));
+    setErrors(validateLogin(values));
     setIsSubmitting(true);
-    console.log(loginUser());
   };
 
-  const loginUser = async () => {
+  const loginUser = async (route) => {
     try {
       const res = await axios({
         method: "post",
-        url: "http://localhost:5000/user/login",
+        url: route,
         data: {
           email: values.email,
           password: values.password,
         },
       });
-      console.log(res);
+      // const { firstName, lastName, email, token } = await res.data.user;
     } catch (error) {
       console.log(error);
     }
@@ -43,9 +73,9 @@ const useLogin = (callback, validation) => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      callback();
+      loginUser("/user/login");
     }
-  }, [errors, isSubmitting, callback]);
+  }, [isSubmitting]);
 
   return { handleChange, values, handleSubmit, errors };
 };
