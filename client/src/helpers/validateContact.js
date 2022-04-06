@@ -2,6 +2,7 @@ const validateContact = (values) => {
   let regexEmail = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
 
   let errors = {};
+  console.log(values);
 
   // Check first name
 
