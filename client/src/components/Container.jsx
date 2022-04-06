@@ -16,7 +16,7 @@ const StyledContainer = styled.div`
   background-color: ${(props) => props.theme.lightGrey};
   display: flex;
   flex-direction: column;
-  padding-top: 100px;
+  padding: 100px 10px 0px 10px;
   min-height: 100vh;
   width: 100%;
   h1 {

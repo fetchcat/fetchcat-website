@@ -1,19 +1,14 @@
-import React from "react";
-
-import Button from "../../components/Button";
 import Form from "../../components/Form/Form";
 import FormCard from "../../components/Form/FormCard";
 
+import Button from "../../components/Button";
+
 import useContact from "../../hooks/useContact";
-import validateContact from "../../helpers/validateContact";
 
 // --- Component --- //
 
 const ContactForm = ({ submitForm }) => {
-  const { handleChange, values, handleSubmit, errors } = useContact(
-    submitForm,
-    validateContact
-  );
+  const { handleChange, values, handleSubmit, errors } = useContact(submitForm);
   return (
     <FormCard>
       <Form onSubmit={handleSubmit}>
@@ -67,7 +62,7 @@ const ContactForm = ({ submitForm }) => {
         </label>
 
         <div className="submit-container">
-          <button type="submit">Send</button>
+          <Button type="submit">Send</Button>
         </div>
       </Form>
     </FormCard>

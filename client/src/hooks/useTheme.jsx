@@ -1,10 +1,10 @@
 const useTheme = () => {
   const theme = {
-    primary: "#8560d4",
-    secondary: "#262429",
-    cta: "#65baa9",
+    primary: "#60a9d4",
+    secondary: "#0d151a",
+    cta: "#c44721",
     dark: "#262429",
-    medium: "#5d4a82",
+    medium: "#3d6d8a",
     light: "#ffffff",
     darkGrey: "#888888",
     mediumGrey: "#cccccc",
@@ -12,10 +12,10 @@ const useTheme = () => {
     success: "green",
     warning: "yellow",
     error: "#bd3549",
-    hoverHighlight: "#b89cf1",
-    primaryHighlight: "#a585e5",
+    hoverHighlight: "#60a9d4",
+    primaryHighlight: "#74c0ec",
     secondaryHighlight: "#4b4750",
-    ctaHighlight: "#7bd4c2",
+    ctaHighlight: "#e64f21",
   };
   return theme;
 };
