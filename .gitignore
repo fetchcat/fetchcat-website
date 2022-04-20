@@ -1,6 +1,7 @@
 node_modules
 .env
 request.rest
+practice
 
 # dependencies
 /node_modules

@@ -32,8 +32,7 @@ const StyledNavBar = styled.ul`
       align-items: center;
       justify-content: center;
       padding: 5px 10px 5px 10px;
-      height: 50px;
-
+      min-height: 60px;
       color: ${(props) => props.theme.light};
       &:hover {
         color: ${(props) => props.theme.hoverHighlight};

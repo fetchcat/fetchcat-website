@@ -1,12 +1,20 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import App from "./App";
+// Global Theme
 
 import { ThemeProvider } from "styled-components";
+import Theme from "./components/Theme/Theme";
+import GlobalStyle from "./components/Theme/GlobalStyle";
 
-import Theme from "./hooks/useTheme";
-import GlobalStyle from "./hooks/useGlobalStyle";
+// Base App
+
+import App from "./App";
+
+// Global Axios
+
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:5000";
 
 // New Root for React v18
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 // --- Component --- //
 
-const button = (props) => {
+const Button = (props) => {
   return (
     <StyledButton primary={props.primary} onClick={props.button}>
       {props.children}
@@ -10,22 +10,26 @@ const button = (props) => {
   );
 };
 
-export default button;
+export default Button;
 
 // --- Styles --- //
 
 const StyledButton = styled.button`
-  padding: 10px 25px;
+  padding: 15px 20px;
   border: none;
-  font-size: 1em;
+  font-size: 1.2em;
   border-radius: 10px;
   cursor: pointer;
   color: white;
   text-transform: uppercase;
+  display: flex;
   background-color: ${(props) =>
     props.primary ? props.theme.primary : props.theme.cta};
   :hover {
     background-color: ${(props) =>
       props.primary ? props.theme.primaryHighlight : props.theme.ctaHighlight};
+  }
+  svg {
+    margin-right: 10px;
   }
 `;

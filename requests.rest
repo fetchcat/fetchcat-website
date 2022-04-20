@@ -17,3 +17,29 @@ content-type: application/json
   "email": "peach@gmail.com",
   "password": "123456"
 }
+
+###
+
+GET http://localhost:5000/blog/user/62566ce3afa6c36582927e8a?p=0
+
+###
+
+POST http://localhost:5000/blog/new
+content-type: application/json
+
+{
+  "title": "Test Post 5 ",
+  "description": "Test Description 5",
+  "entry": "lorem ipsum dolor sit amnet...",
+  "user": "62350e2de33c4f7cab42b146",
+  "firstName": "Princess",
+  "lastName": "Peach"
+}
+
+###
+
+DELETE http://localhost:5000/blog/624e1440f7939221cf48312f
+
+###
+
+GET http://localhost:5000/blog/test-blog-4

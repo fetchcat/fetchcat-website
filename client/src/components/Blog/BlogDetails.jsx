@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
+import { UserContext } from "../../context/UserContext";
+
 const BlogDetails = ({ blog }) => {
+  const [user] = useContext(UserContext);
   const created = new Date(blog.createdAt);
   const updated = new Date(blog.updatedAt);
   return (
@@ -16,9 +19,8 @@ const BlogDetails = ({ blog }) => {
         <div>Created On: {created.toLocaleDateString()}</div>
         <div>Last Updated: {updated.toLocaleDateString()}</div>
       </div>
-      <div className="description">{blog.description}</div>
       <div className="entry">{blog.entry}</div>
-      <StyledLink to={"/blog"}>Back</StyledLink>
+      <StyledLink to={user.isAuth ? "/dashboard" : "/blog"}>Back</StyledLink>
     </StyledBlogDetails>
   );
 };
@@ -27,9 +29,9 @@ export default BlogDetails;
 
 const StyledBlogDetails = styled.article`
   border-left: solid 10px ${(props) => props.theme.primary};
-
+  border-radius: 10px;
   margin: 10px;
-  padding: 10px 10px 20px 20px;
+  padding: 10px 20px 20px 20px;
   background-color: white;
 
   .info {

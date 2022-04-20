@@ -5,10 +5,10 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({
     isAuth: false,
+    _id: "",
     firstName: "",
     lastName: "",
     email: "",
-    token: "",
   });
 
   return (

@@ -1,5 +1,5 @@
 const { handleErrors } = require("../middleware/handleErrors");
-
+const { ObjectId } = require("mongodb");
 const Blog = require("../models/blogModel");
 
 // GET - and Sort Latest 5 Blog Posts
@@ -7,6 +7,22 @@ const Blog = require("../models/blogModel");
 const getLatestBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find().sort({ updatedAt: -1 }).limit(5);
+    res.status(201).send(blogs);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error establishing database connection", error });
+  }
+};
+
+// GET - All blogs by user ID
+
+const getUserBlogs = async (req, res) => {
+  const user = req.params.id;
+  try {
+    const blogs = await Blog.find({ user: ObjectId(user) }).sort({
+      updatedAt: -1,
+    });
     res.status(201).send(blogs);
   } catch (error) {
     res
@@ -46,8 +62,7 @@ const postNewBlog = async (req, res) => {
     newBlog.save();
     res.status(201).json(newBlog);
   } catch {
-    handleErrors(errors);
-    res.status(400).json({ errors });
+    res.status(400).json({ message: "Blog post creation failed" });
   }
 };
 
@@ -55,4 +70,22 @@ const postNewBlog = async (req, res) => {
 
 // DELETE - Delete blog by ID
 
-module.exports = { postNewBlog, getLatestBlogs, getBlogDetails };
+const deleteBlogById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const blog = await Blog.deleteOne({ _id: ObjectId(id) });
+    res.status(200).json({ message: "Message deleted successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error establishing database connection", error });
+  }
+};
+
+module.exports = {
+  postNewBlog,
+  getLatestBlogs,
+  getBlogDetails,
+  getUserBlogs,
+  deleteBlogById,
+};

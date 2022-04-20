@@ -1,8 +1,12 @@
 const { handleErrors } = require("../middleware/handleErrors");
 
+const { ObjectId } = require("mongodb");
+
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+const { verifyJWT } = require("../middleware/verifyJWT");
 
 // JWT
 
@@ -25,7 +29,6 @@ const postRegisterUser = async (req, res) => {
       lastName: lastName,
     });
     const token = createToken(user._id);
-    // res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.status(201).json({ user: user._id, token: token });
   } catch (err) {
     const errors = handleErrors(err);
@@ -37,9 +40,7 @@ const postRegisterUser = async (req, res) => {
 
 const postLoginUser = async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(req.body);
   const user = await User.findOne({ email });
-  console.log(user);
   if (user == null) {
     return res.status(400).json({ message: "No user found" });
   }
@@ -58,6 +59,7 @@ const postLoginUser = async (req, res, next) => {
           lastName: user.lastName,
           email: email,
           token: token,
+          _id: ObjectId(user._id),
         },
       });
     } else {
@@ -69,4 +71,8 @@ const postLoginUser = async (req, res, next) => {
   }
 };
 
-module.exports = { postRegisterUser, postLoginUser };
+const getIsAuth = async (req, res) => {
+  res.send("Auth successful");
+};
+
+module.exports = { postRegisterUser, postLoginUser, getIsAuth };

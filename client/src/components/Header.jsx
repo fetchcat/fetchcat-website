@@ -1,7 +1,8 @@
-import Nav from "./Nav/Nav";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
+
+import Nav from "./Nav/Nav";
 
 import { GiCat } from "react-icons/gi";
 
@@ -24,14 +25,14 @@ export default Header;
 // --- Styles --- //
 
 const StyledHeader = styled.header`
-  background-color: ${(props) => props.theme.secondary};
+  background-color: ${(props) => props.theme.dark};
   padding-left: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 50px;
+  min-height: 60px;
   position: fixed;
   left: 0;
   top: 0;
@@ -49,6 +50,6 @@ const StyledLogoNavLink = styled(NavLink)`
     margin-left: 10px;
   }
   :hover {
-    color: ${(props) => props.theme.primaryHighlight};
+    color: ${(props) => props.theme.ctaHighlight};
   }
 `;
