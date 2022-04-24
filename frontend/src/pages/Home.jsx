@@ -12,9 +12,23 @@ const Home = () => {
         <h1>Hi, I'm Michelle</h1>
         <p>Self-Taught Web Developer</p>
         <div className="cta-links">
-          <FaGithubSquare />
-          <FaLinkedin />
-          <FaFilePdf />
+          <a
+            href="https://github.com/fetchcat"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaGithubSquare />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/michelleerogers/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaLinkedin />
+          </a>
+          <a href="#" target="_blank" rel="noreferrer">
+            <FaFilePdf />
+          </a>
         </div>
         <NavLink to="/contact">
           <button className="primary button">
