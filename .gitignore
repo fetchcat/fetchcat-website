@@ -1,7 +1,6 @@
 node_modules
 .env
 request.rest
-practice
 
 # dependencies
 /node_modules
@@ -24,3 +23,5 @@ practice
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+db*.json
