@@ -26,15 +26,7 @@ app.listen(port, () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-if (env === "production") {
-  app.use(
-    cors({
-      origin: "https://fetchcat.ca",
-      credentials: true,
-      methods: ["GET", "POST", "PUT", "DELETE"],
-    })
-  );
-} else {
+if (env === "development") {
   app.use(
     cors({
       origin: "http://localhost:3000",

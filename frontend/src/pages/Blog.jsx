@@ -22,7 +22,7 @@ const Blog = () => {
     try {
       const response = await axios({
         method: "GET",
-        url: `https://localhost:5000/blog/latest`,
+        url: `blog/latest`,
       });
       setBlogs(response.data);
       setLoading(false);
