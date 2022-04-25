@@ -38,6 +38,6 @@ if (env === "development") {
 
 // --- Routes --- //
 
-app.use("/user", userRoutes);
-app.use("/blog", blogRoutes);
-app.use("/send", emailRoutes);
+app.use("/api/fetchcat/user", userRoutes);
+app.use("/api/fetchcat/blog", blogRoutes);
+app.use("/api/fetchcat/send", emailRoutes);
