@@ -62,7 +62,7 @@ const Portfolio = () => {
         <div className="project-links">
           <a
             className="link site"
-            href="https://glareact.fetchcat.ca"
+            href="https://fetchcat.ca/apps/glareact"
             target="_blank"
             rel="noreferrer"
           >
@@ -98,7 +98,7 @@ const Portfolio = () => {
         <div className="project-links">
           <a
             className="link site"
-            href="https://glajs.fetchcat.ca"
+            href="https://fetchcat.ca/apps/glajs"
             target="_blank"
             rel="noreferrer"
           >
@@ -133,7 +133,7 @@ const Portfolio = () => {
         <div className="project-links">
           <a
             className="link site"
-            href="https://weathersplash.fetchcat.ca"
+            href="https://fetchcat.ca/apps/weathersplash"
             target="_blank"
             rel="noreferrer"
           >
