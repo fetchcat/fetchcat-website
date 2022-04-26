@@ -10,7 +10,7 @@ import App from "./App";
 // Global Axios
 
 import axios from "axios";
-axios.defaults.baseURL = "https://fetchcat.ca/api/fetchcat";
+axios.defaults.baseURL = "http://localhost:5000";
 
 // New Root for React v18
 
