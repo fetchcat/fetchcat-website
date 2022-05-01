@@ -54,9 +54,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "React App",
+      title: "FetchCat",
       filename: "index.html",
       template: "src/index.html",
+      favicon: "src/assets/favicon.ico",
     }),
     new MiniCssExtractPlugin({
       linkType: "text/css",
