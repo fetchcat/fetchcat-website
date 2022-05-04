@@ -7,7 +7,7 @@ module.exports = {
   entry: path.join(__dirname, "index.js"),
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "[name]-[contenthash].js",
+    filename: "index.bundle.js",
     clean: true,
     assetModuleFilename: "[name][ext]",
   },
@@ -22,7 +22,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test: /\.?js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -32,8 +32,16 @@ module.exports = {
         },
       },
       {
-        test: /\.svg$/,
-        use: ["@svgr/webpack"],
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -44,7 +52,7 @@ module.exports = {
   devtool: "source-map",
   devServer: {
     static: {
-      directory: path.resolve(__dirname, "build"),
+      directory: path.join(__dirname, "build"),
     },
     port: 3000,
     open: true,

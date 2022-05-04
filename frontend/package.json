@@ -1,9 +1,7 @@
 {
-  "name": "react-webpack",
-  "version": "1.0.0",
-  "description": "React Webpack Boilerplate",
+  "name": "frontend",
+  "version": "1.1.0",
   "main": "index.js",
-  "repository": "https://github.com/fetchcat/react-webpack.git",
   "author": "Michelle Rogers",
   "license": "MIT",
   "scripts": {
@@ -25,6 +23,7 @@
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "sass": "^1.51.0",

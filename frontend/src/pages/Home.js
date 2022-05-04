@@ -12,7 +12,7 @@ const Home = () => {
     <div className="container">
       <div className="hero">
         <h1>Hi, I'm Michelle</h1>
-        <p>Self-Taught Web Developer</p>
+        <p className="tagline uppercase-text">Self-Taught Web Developer</p>
         <div className="cta-links">
           <a
             href="https://github.com/fetchcat"
@@ -28,7 +28,11 @@ const Home = () => {
           >
             <FaLinkedin />
           </a>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a
+            href="https://drive.google.com/file/d/1Wh8Yjx1xWwjAwTQdkcm0DbXeBAhtW2dE/view?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FaFilePdf />
           </a>
         </div>
