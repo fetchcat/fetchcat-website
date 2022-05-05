@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const port = process.env.PORT || 5000;
+const env = process.env.NODE_ENV;
 
 const express = require("express");
 const cors = require("cors");
@@ -25,13 +26,23 @@ app.listen(port, () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  cors({
-    origin: "https://fetchcat.ca",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
+if (env === "development") {
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true,
+      methods: ["GET", "POST", "PUT", "DELETE"],
+    })
+  );
+} else {
+  app.use(
+    cors({
+      origin: ["https://fetchcat.ca", "https://www.fetchcat.ca"],
+      credentials: true,
+      methods: ["GET", "POST", "PUT", "DELETE"],
+    })
+  );
+}
 
 // --- Routes --- //
 
